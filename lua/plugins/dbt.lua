@@ -12,7 +12,7 @@ return {
       path_to_dbt_project = "",
 
       -- Path to dbt profiles directory
-      -- path_to_dbt_profiles_dir = vim.fn.expand("~/.dbt"),
+      path_to_dbt_profiles_dir = vim.fn.expand("~/.dbt"),
 
       -- Search for ref/source files in macros and models folders
       extended_path_search = true,
@@ -24,12 +24,7 @@ return {
     -- Enable Telescope Extension
     require("telescope").load_extension("dbtpal")
   end,
-  keys = {
-    { "<leader>drf", "<cmd>dbt.run", desc = "Run DBT" },
-    { "<leader>drp", "<cmd>dbt.run_all", desc = "Run All DBT" },
-    { "<leader>dtf", "<cmd>dbt.test", desc = "Test DBT" },
-    { "<leader>dm", "<cmd>lua require('dbtpal.telescope').dbt_picker()", desc = "DBT Picker" },
-  },
+  keys = {},
   dependencies = {
     "nvim-telescope/telescope.nvim",
     "nvim-lua/plenary.nvim",

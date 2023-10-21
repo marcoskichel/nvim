@@ -3,7 +3,7 @@
 -- Add any additional options here
 
 vim.opt.cursorline = false
-vim.opt.relativenumber = false
+-- vim.opt.relativenumber = false
 
 if vim.fn.has("wsl") == 1 then
   vim.g.clipboard = {

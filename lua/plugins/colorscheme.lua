@@ -15,6 +15,7 @@ return {
     "ellisonleao/gruvbox.nvim",
     opts = {
       transparent_mode = true,
+      contrast = "strong",
       styles = {
         sidebars = "transparent",
         float = "transparent",

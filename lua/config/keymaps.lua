@@ -20,6 +20,23 @@ vim.keymap.set({ "n", "i" }, "<C-a>", "<esc>ggVG<cr>", { noremap = true, silent 
 vim.keymap.set({ "n" }, "<C-A-Down>", "Yp", { noremap = true, silent = true, desc = "Duplicate line" })
 vim.keymap.set({ "v" }, "<C-A-Down>", "Y`>p", { noremap = true, silent = true, desc = "Duplicate line" })
 
+-- Replace in selection
+vim.keymap.set(
+  { "x" },
+  "<leader>jy",
+  "<cmd>substitute(escape(@\", '/'), '\n', '\\n', 'g')<cr>\"_cgn",
+  { noremap = true, silent = true, desc = "Replace in selection" }
+)
+
+-- Replace word under cursor
+vim.keymap.set({ "n" }, "<leader>j", "*cgn", { noremap = true, silent = true, desc = "Duplicate line" })
+vim.keymap.set(
+  { "n" },
+  "<F2>",
+  "<cmd>lua vim.lsp.buf.rename()<cr>",
+  { noremap = true, silent = true, desc = "Rename variable" }
+)
+
 -- Spectre search and replace
 vim.keymap.set(
   "n",
@@ -27,6 +44,8 @@ vim.keymap.set(
   "<cmd>lua require('spectre').open_file_search({})<CR>i",
   { remap = true, silent = true, desc = "Search in current buffer" }
 )
-
 -- Aerial
 vim.keymap.set("n", "<C-o>", "<cmd>AerialToggle!<CR>")
+
+-- Oil (Open in parent directory)
+vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })

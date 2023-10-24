@@ -29,7 +29,7 @@ vim.keymap.set(
 )
 
 -- Replace word under cursor
-vim.keymap.set({ "n" }, "<leader>j", "*cgn", { noremap = true, silent = true, desc = "Duplicate line" })
+vim.keymap.set({ "n" }, "<leader>j", "*cgn", { noremap = true, silent = true, desc = "Replace current line" })
 vim.keymap.set(
   { "n" },
   "<F2>",

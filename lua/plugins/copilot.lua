@@ -1,43 +1,29 @@
 return {
-  "zbirenbaum/copilot.lua",
-  cmd = "Copilot",
-  build = ":Copilot auth",
-  opts = {
-    suggestion = { enabled = true },
-    filetypes = {
-      markdown = true,
-      yaml = true,
-      help = true,
-    },
-  },
-  -- copilot cmp source
   {
-    "nvim-cmp",
-    dependencies = {
-      {
-        "zbirenbaum/copilot-cmp",
-        dependencies = "copilot.lua",
-        opts = {},
-        config = function(_, opts)
-          local copilot_cmp = require("copilot_cmp")
-          copilot_cmp.setup(opts)
-          -- attach cmp source whenever copilot attaches
-          -- fixes lazy-loading issues with the copilot cmp source
-          require("lazyvim.util").lsp.on_attach(function(client)
-            if client.name == "copilot" then
-              copilot_cmp._on_insert_enter({})
-            end
-          end)
-        end,
-      },
-    },
-    ---@param opts cmp.ConfigSchema
-    opts = function(_, opts)
-      table.insert(opts.sources, 1, {
-        name = "copilot",
-        group_index = 1,
-        priority = 100,
+    "zbirenbaum/copilot.lua",
+    cmd = "Copilot",
+    build = ":Copilot auth",
+    config = function()
+      require("copilot").setup({
+        suggestion = {
+          enabled = true,
+          auto_trigger = true,
+          accept = false, -- disable built-in keymapping
+        },
       })
+
+      -- hide copilot suggestions when cmp menu is open
+      -- to prevent odd behavior/garbled up suggestions
+      local cmp_status_ok, cmp = pcall(require, "cmp")
+      if cmp_status_ok then
+        cmp.event:on("menu_opened", function()
+          vim.b.copilot_suggestion_hidden = true
+        end)
+
+        cmp.event:on("menu_closed", function()
+          vim.b.copilot_suggestion_hidden = false
+        end)
+      end
     end,
   },
 }

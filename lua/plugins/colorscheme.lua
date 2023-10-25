@@ -15,12 +15,25 @@ return {
     "ellisonleao/gruvbox.nvim",
     opts = {
       transparent_mode = true,
-      contrast = "strong",
+      contrast = "soft",
       styles = {
         sidebars = "transparent",
         float = "transparent",
       },
     },
+  },
+
+  {
+    "catppuccin/nvim",
+    lazy = false,
+    name = "catppuccin",
+    config = function()
+      require("catppuccin").setup({
+        flavor = "mocha",
+        transparent_background = true,
+        show_end_of_buffer = true,
+      })
+    end,
   },
 
   -- Configure LazyVim to load gruvbox
@@ -29,6 +42,7 @@ return {
     opts = {
       -- colorscheme = "tokyonight",
       colorscheme = "gruvbox",
+      -- colorscheme = "catppuccin",
     },
   },
 }

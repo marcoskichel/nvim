@@ -49,3 +49,8 @@ vim.keymap.set("n", "<C-o>", "<cmd>AerialToggle!<CR>")
 
 -- Oil (Open in parent directory)
 vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+
+-- vim.keymap.set("n", "<leader>xr")
+
+vim.g.copilot_assume_mapped = true
+vim.keymap.set("i", "<C-J>", 'copilot#Accept("<CR>")', { silent = true, expr = true })

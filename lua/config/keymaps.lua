@@ -2,8 +2,8 @@
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
 
--- Recent files
--- vim.keymap.set("n", "<C-r>", "<leader>fb", { remap = true, desc = "Open recent buffers dialog" })
+-- Save all
+vim.keymap.set("n", "<C-S-s>", ":wa<cr>", { remap = true, desc = "Save all" })
 
 -- Window navigation
 vim.keymap.set("n", "<leader>wl", "<leader>w|", { remap = true, desc = "Split window right" })
@@ -12,9 +12,6 @@ vim.keymap.set("n", "<leader>wj", "<leader>w-", { remap = true, desc = "Split wi
 
 -- Redo
 vim.keymap.set({ "n" }, "<C-y>", ":redo<cr>", { noremap = true, silent = true, desc = "Redo" })
-
--- Select content
-vim.keymap.set({ "n", "i" }, "<C-a>", "<esc>ggVG<cr>", { noremap = true, silent = true, desc = "Select all content" })
 
 -- Duplicate
 vim.keymap.set({ "n" }, "<C-A-Down>", "Yp", { noremap = true, silent = true, desc = "Duplicate line" })
@@ -45,12 +42,11 @@ vim.keymap.set(
   { remap = true, silent = true, desc = "Search in current buffer" }
 )
 -- Aerial
-vim.keymap.set("n", "<C-o>", "<cmd>AerialToggle!<CR>")
+vim.keymap.set("n", "<C-S-o>", "<cmd>AerialToggle!<CR>")
 
--- Oil (Open in parent directory)
-vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
-
--- vim.keymap.set("n", "<leader>xr")
+vim.keymap.set("n", "<C-h>", "<cmd>TmuxNavigateLeft<cr>", { silent = true, desc = "Window left" })
+vim.keymap.set("n", "<C-j>", "<cmd>TmuxNavigateDown<cr>", { silent = true, desc = "Window down" })
+vim.keymap.set("n", "<C-k>", "<cmd>TmuxNavigateUp<cr>", { silent = true, desc = "Window up" })
+vim.keymap.set("n", "<C-l>", "<cmd>TmuxNavigateRight<cr>", { silent = true, desc = "Window right" })
 
 vim.g.copilot_assume_mapped = true
-vim.keymap.set("i", "<C-J>", 'copilot#Accept("<CR>")', { silent = true, expr = true })

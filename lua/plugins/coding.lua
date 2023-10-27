@@ -4,26 +4,70 @@ return {
     build = (not jit.os:find("Windows"))
         and "echo 'NOTE: jsregexp is optional, so not a big deal if it fails to build'; make install_jsregexp"
       or nil,
-    dependencies = {
-      "rafamadriz/friendly-snippets",
-      config = function()
-        require("luasnip.loaders.from_vscode").lazy_load()
-      end,
-    },
     opts = {
       history = true,
       delete_check_events = "TextChanged",
     },
-  -- stylua: ignore
-    keys = function ()
-      return {}
-    end,
+    -- stylua: ignore
+    keys = {
+      {
+        "<s-tab>",
+        function()
+          return require("luasnip").jumpable(1) and "<Plug>luasnip-jump-next" or "<s-tab>"
+        end,
+        expr = true, silent = true, mode = "i",
+      },
+      { "<s-tab>", function() require("luasnip").jump(1) end, mode = "s" },
+    }
+,
   },
 
   {
     "rafamadriz/friendly-snippets",
     config = function()
       require("luasnip.loaders.from_vscode").lazy_load()
+      local ls = require("luasnip")
+
+      local s = ls.snippet
+      local t = ls.text_node
+      local i = ls.insert_node
+
+      local jest = {
+        s("desc", {
+          t("describe('"),
+          i(1, "component"),
+          t("', () => {"),
+          i(2, "tests"),
+          t("})"),
+        }),
+
+        s("it", {
+          t("it('"),
+          i(1, "description"),
+          t("', () => {"),
+          i(2, "assertions"),
+          t("})"),
+        }),
+
+        s("ita", {
+          t("it('"),
+          i(1, "description"),
+          t("', async () => {"),
+          i(2, "assertions"),
+          t("})"),
+        }),
+
+        s("mock", {
+          t("jest.mock('"),
+          i(1, "module"),
+          t("'), () => {"),
+          i(2, "impl"),
+          t("})"),
+        }),
+      }
+
+      ls.add_snippets("typescript", jest)
+      ls.add_snippets("javascript", jest)
     end,
   },
 

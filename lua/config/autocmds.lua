@@ -9,7 +9,8 @@ vim.api.nvim_create_autocmd({ "BufWritePost" }, {
   desc = "Auto-format SQL files after saving",
   callback = function()
     local fileName = vim.api.nvim_buf_get_name(0)
-    vim.cmd(":!sqlfmt " .. fileName)
+    local command = string.format(":silent !sqlfmt %s", vim.fn.shellescape(fileName))
+    vim.cmd(command)
   end,
   group = autocmd_group,
 })

@@ -3,7 +3,7 @@ return {
   {
     "folke/tokyonight.nvim",
     opts = {
-      transparent = true,
+      -- transparent = true,
       styles = {
         sidebars = "transparent",
         floats = "transparent",
@@ -14,7 +14,7 @@ return {
   {
     "ellisonleao/gruvbox.nvim",
     opts = {
-      transparent_mode = true,
+      -- transparent_mode = true,
       contrast = "soft",
       styles = {
         sidebars = "transparent",
@@ -29,20 +29,43 @@ return {
     name = "catppuccin",
     config = function()
       require("catppuccin").setup({
-        flavor = "mocha",
+        flavor = "frappe",
         transparent_background = true,
         show_end_of_buffer = true,
       })
     end,
   },
 
+  {
+    "nyoom-engineering/oxocarbon.nvim",
+  },
+
+  {
+    "rebelot/kanagawa.nvim",
+    name = "kanagawa",
+    opts = {
+      statementStyle = { bold = true },
+      -- transparent = true,
+    },
+  },
+
+  {
+    "tiagovla/tokyodark.nvim",
+    name = "tokyodark",
+    opts = {
+      transparent_background = true,
+    },
+  },
+
+  {
+    "dotsilas/darcubox-nvim",
+  },
+
   -- Configure LazyVim to load gruvbox
   {
     "LazyVim/LazyVim",
     opts = {
-      -- colorscheme = "tokyonight",
-      colorscheme = "gruvbox",
-      -- colorscheme = "catppuccin",
+      colorscheme = "catppuccin",
     },
   },
 }
